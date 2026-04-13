@@ -1,0 +1,90 @@
+.back-btn { background:none; border:none; color:var(--accent2); font-family:var(--font); font-weight:700; font-size:0.85rem; cursor:pointer; }
+.nav-title { font-size:1rem; font-weight:800; }
+
+.loan-hero {
+  background:linear-gradient(135deg,#0f1f40,#1a0a40);
+  border-radius:22px; padding:22px 20px; margin-bottom:16px;
+  border:1px solid rgba(56,189,248,0.25);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.hero-label { font-size:0.75rem; 
+  color:var(--text2); 
+  font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px; }
+.hero-amount { font-size:2rem; font-weight:900; font-family:var(--mono); color:var(--accent3); margin-bottom:10px; }
+.used-bar { height:6px; background:rgba(255,255,255,0.12); border-radius:3px; overflow:hidden; margin-bottom:5px; width:180px; }
+.used-fill { height:100%; background:linear-gradient(90deg,var(--accent3),var(--accent)); border-radius:3px; }
+.used-text { font-size:0.72rem; color:var(--text2); font-weight:600; }
+.hero-icon { font-size:3rem; }
+
+.loan-tabs { display:flex; gap:6px; margin-bottom:16px; }
+.loan-tab { flex:1; background:var(--card); border:1px solid var(--border); border-radius:20px; padding:10px 6px; font-family:var(--font); font-weight:700; font-size:0.78rem; color:var(--text2); cursor:pointer; transition:all 0.2s; text-align:center; }
+.loan-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+.loan-features-row { display:flex; gap:8px; margin-bottom:16px; }
+.lf-item { flex:1; background:var(--card); border:1px solid var(--border); border-radius:14px; padding:12px 8px; text-align:center; }
+.lf-icon { font-size:1.3rem; margin-bottom:5px; }
+.lf-text { font-size:0.68rem; color:var(--text2); font-weight:600; line-height:1.5; }
+.lf-text strong { display:block; color:var(--text); font-weight:800; font-size:0.75rem; }
+
+/* SLIDER */
+.amt-slider { width:100%; margin:10px 0 6px; accent-color:var(--accent); height:4px; cursor:pointer; }
+.slider-display { display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; color:var(--text2); font-weight:600; }
+.slider-display strong { font-size:1.1rem; color:var(--text); font-weight:900; font-family:var(--mono); }
+
+.duration-btns { display:flex; gap:8px; }
+.dur-btn { flex:1; padding:10px 0; border-radius:10px; border:1.5px solid var(--border); background:var(--bg3); font-family:var(--font); font-weight:700; font-size:0.82rem; color:var(--text2); cursor:pointer; transition:all 0.2s; }
+.dur-btn.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+.emi-card { background:var(--bg3); border-radius:14px; padding:16px; margin-bottom:14px; }
+.emi-row { display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.85rem; }
+.emi-row span { color:var(--text2); font-weight:600; }
+.emi-row strong { font-weight:800; }
+
+.autopay-toggle { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.autopay-title { font-size:0.85rem; font-weight:700; margin-bottom:2px; }
+.autopay-sub { font-size:0.72rem; color:var(--text2); font-weight:600; }
+
+/* Toggle Switch */
+.switch { position:relative; width:48px; height:26px; flex-shrink:0; }
+.switch input { opacity:0; width:0; height:0; }
+.slider-thumb { position:absolute; inset:0; background:var(--bg); border-radius:13px; border:1.5px solid var(--border); cursor:pointer; transition:0.3s; }
+.slider-thumb::before { content:''; position:absolute; width:18px; height:18px; bottom:3px; left:3px; background:var(--text3); border-radius:50%; transition:0.3s; }
+.switch input:checked + .slider-thumb { background:var(--accent); border-color:var(--accent); }
+.switch input:checked + .slider-thumb::before { transform:translateX(22px); background:#fff; }
+
+/* Approval flow */
+.approval-flow { display:flex; align-items:center; gap:0; background:var(--bg3); border-radius:12px; padding:14px; }
+.flow-step { display:flex; flex-direction:column; align-items:center; gap:4px; flex:1; }
+.step-dot { width:28px; height:28px; border-radius:50%; background:var(--card2); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:800; }
+.flow-step.done .step-dot { background:var(--green); border-color:var(--green); color:#fff; font-size:0.9rem; }
+.flow-step span:last-child { font-size:0.65rem; color:var(--text2); font-weight:700; text-align:center; }
+.flow-line { height:2px; flex:0.6; background:var(--border); }
+
+/* Education */
+.edu-banner { background:linear-gradient(135deg,rgba(52,211,153,0.12),rgba(56,189,248,0.1)); border:1px solid rgba(52,211,153,0.25); border-radius:16px; padding:16px; display:flex; gap:14px; align-items:center; margin-bottom:14px; }
+.edu-icon { font-size:2.5rem; }
+.edu-title { font-size:0.95rem; font-weight:800; color:var(--green); margin-bottom:4px; }
+.edu-sub { font-size:0.78rem; color:var(--text2); font-weight:600; line-height:1.5; }
+.edu-benefits { margin-bottom:16px; display:flex; flex-direction:column; gap:8px; }
+.edu-benefit { display:flex; gap:10px; align-items:flex-start; font-size:0.82rem; font-weight:600; color:var(--text2); }
+.edu-benefit strong { color:var(--text); }
+
+/* Active loan card */
+.active-loan-card { background:var(--card); border:1px solid var(--border); border-radius:18px; padding:18px; margin-bottom:12px; }
+.al-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; }
+.al-type { font-size:0.72rem; color:var(--text2); font-weight:700; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:2px; }
+.al-purpose { font-size:0.95rem; font-weight:800; }
+.al-progress-label { display:flex; justify-content:space-between; font-size:0.72rem; color:var(--text2); font-weight:700; margin-bottom:6px; }
+.progress-bar-wrap { height:6px; background:var(--bg3); border-radius:3px; overflow:hidden; margin-bottom:12px; }
+.progress-bar-fill { height:100%; background:linear-gradient(90deg,var(--accent),var(--accent3)); border-radius:3px; }
+.al-stats { display:flex; justify-content:space-around; background:var(--bg3); border-radius:10px; padding:10px; margin-bottom:10px; }
+.al-stat { text-align:center; }
+.al-stat span { display:block; font-size:0.65rem; color:var(--text2); font-weight:700; margin-bottom:3px; }
+.al-stat strong { font-size:0.85rem; font-weight:800; }
+.autopay-badge { background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.25); border-radius:8px; padding:8px 12px; font-size:0.75rem; font-weight:700; color:var(--green); display:flex; align-items:center; gap:6px; }
+
+.no-more-loans { text-align:center; padding:20px; color:var(--text2); font-weight:600; font-size:0.85rem; }
+.nmll-icon { font-size:2.5rem; margin-bottom:8px; }
+
+.input-icon-wrap { position:relative; display:flex; align-items:center; }
+.input-icon { position:absolute; left:14px; font-size:1rem; z-index:1; }

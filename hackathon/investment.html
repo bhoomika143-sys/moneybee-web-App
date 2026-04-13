@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Moneybee&#128029; — Invest</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="investment.css" />
+  <link rel="icon" type="image/png" href="moneybee.png">
+</head>
+<body>
+
+<nav class="navbar">
+  <button class="back-btn" onclick="history.back()">← Back</button>
+  <div class="nav-title">Invest Smart</div>
+  <div class="nav-btn" onclick="window.location.href='home.html'">🏠</div>
+</nav>
+
+<main class="main-content">
+
+  <!-- Portfolio Summary -->
+  <div class="portfolio-card fade-up">
+    <p class="p-label">Your Portfolio Value</p>
+    <h1 class="p-value">₹ 4,320.50</h1>
+    <div class="p-change positive">↑ ₹220.50 (+5.4%) this month</div>
+    <div class="p-chips">
+      <div class="p-chip"><span>MF</span><strong>₹2,000</strong></div>
+      <div class="p-chip"><span>Stocks</span><strong>₹1,800</strong></div>
+      <div class="p-chip"><span>Crypto</span><strong>₹520</strong></div>
+    </div>
+  </div>
+
+  <!-- Parent controlled notice -->
+  <div class="parent-banner fade-up">
+    <span class="icon">👪</span>
+    <span class="text">Investments above ₹2,000 require parent approval. All investments are visible to your guardian.</span>
+  </div>
+
+  <!-- Category Tabs -->
+  <div class="inv-tabs fade-up">
+    <button class="inv-tab active" onclick="showTab('mf',this)">📊 Mutual Funds</button>
+    <button class="inv-tab" onclick="showTab('stocks',this)">📉 Stocks</button>
+    <button class="inv-tab" onclick="showTab('crypto',this)">₿ Crypto</button>
+    <button class="inv-tab" onclick="showTab('tips',this)">💡 Tips</button>
+  </div>
+
+  <!-- ── MUTUAL FUNDS ── -->
+  <div id="tab-mf">
+    <div class="section-header" style="margin-bottom:12px">
+      <span class="section-title">Top Funds for Teens</span>
+      <span class="tag green">SIP from ₹100</span>
+    </div>
+    <div class="fund-card" onclick="openInvest('Nifty 50 Index Fund','Low Risk','12.4%','₹100')">
+      <div class="fund-top">
+        <div class="fund-icon" style="background:linear-gradient(135deg,#7c6bff,#5b4fff)">📊</div>
+        <div class="fund-info">
+          <p class="fund-name">Nifty 50 Index Fund</p>
+          <p class="fund-meta">Index · Equity · Low Risk</p>
+        </div>
+        <div class="fund-ret positive">+12.4%<br><span>1Y</span></div>
+      </div>
+      <div class="fund-bottom">
+        <div class="fund-stat"><span>Min SIP</span><strong>₹100</strong></div>
+        <div class="fund-stat"><span>AUM</span><strong>₹42,000 Cr</strong></div>
+        <div class="fund-stat"><span>Risk</span><strong style="color:var(--green)">Low</strong></div>
+        <button class="btn-sm btn btn-primary" style="margin:0">Invest</button>
+      </div>
+    </div>
+    <div class="fund-card" onclick="openInvest('ELSS Tax Saver','Medium Risk','15.2%','₹500')">
+      <div class="fund-top">
+        <div class="fund-icon" style="background:linear-gradient(135deg,#34d399,#059669)">🌱</div>
+        <div class="fund-info">
+          <p class="fund-name">ELSS Tax Saver Fund</p>
+          <p class="fund-meta">ELSS · Equity · Medium Risk</p>
+        </div>
+        <div class="fund-ret positive">+15.2%<br><span>1Y</span></div>
+      </div>
+      <div class="fund-bottom">
+        <div class="fund-stat"><span>Min SIP</span><strong>₹500</strong></div>
+        <div class="fund-stat"><span>Lock-in</span><strong>3 yrs</strong></div>
+        <div class="fund-stat"><span>Risk</span><strong style="color:var(--orange)">Medium</strong></div>
+        <button class="btn-sm btn btn-primary" style="margin:0">Invest</button>
+      </div>
+    </div>
+    <div class="fund-card" onclick="openInvest('Liquid Fund','Very Low Risk','6.8%','₹1,000')">
+      <div class="fund-top">
+        <div class="fund-icon" style="background:linear-gradient(135deg,#38bdf8,#0ea5e9)">💧</div>
+        <div class="fund-info">
+          <p class="fund-name">Liquid Fund</p>
+          <p class="fund-meta">Debt · Very Low Risk</p>
+        </div>
+        <div class="fund-ret positive">+6.8%<br><span>1Y</span></div>
+      </div>
+      <div class="fund-bottom">
+        <div class="fund-stat"><span>Min</span><strong>₹1,000</strong></div>
+        <div class="fund-stat"><span>Liquidity</span><strong>T+1</strong></div>
+        <div class="fund-stat"><span>Risk</span><strong style="color:var(--green)">Very Low</strong></div>
+        <button class="btn-sm btn btn-primary" style="margin:0">Invest</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STOCKS ── -->
+  <div id="tab-stocks" style="display:none">
+    <div class="teen-stock-notice">
+      <span>⚠️</span>
+      <span>Stock trading under 18 requires parent/guardian as primary account holder. All trades need approval.</span>
+    </div>
+    <div class="stock-item" onclick="openInvest('Reliance Industries','Large Cap','+2.3%','₹1')">
+      <div class="stock-left">
+        <div class="stock-icon">🔵</div>
+        <div>
+          <p class="stock-name">Reliance Industries</p>
+          <p class="stock-meta">NSE · RELIANCE · Large Cap</p>
+        </div>
+      </div>
+      <div class="stock-right">
+        <p class="stock-price">₹2,845</p>
+        <p class="stock-change positive">+2.3%</p>
+      </div>
+    </div>
+    <div class="stock-item" onclick="openInvest('Infosys','IT Sector','+1.8%','₹1')">
+      <div class="stock-left">
+        <div class="stock-icon">🟢</div>
+        <div>
+          <p class="stock-name">Infosys</p>
+          <p class="stock-meta">NSE · INFY · IT Sector</p>
+        </div>
+      </div>
+      <div class="stock-right">
+        <p class="stock-price">₹1,720</p>
+        <p class="stock-change positive">+1.8%</p>
+      </div>
+    </div>
+    <div class="stock-item" onclick="openInvest('Tata Motors','Auto','-0.9%','₹1')">
+      <div class="stock-left">
+        <div class="stock-icon">🔴</div>
+        <div>
+          <p class="stock-name">Tata Motors</p>
+          <p class="stock-meta">NSE · TATAMOTORS · Auto</p>
+        </div>
+      </div>
+      <div class="stock-right">
+        <p class="stock-price">₹964</p>
+        <p class="stock-change negative">-0.9%</p>
+      </div>
+    </div>
+    <div class="stock-item" onclick="openInvest('Zomato','Consumer Tech','+4.2%','₹1')">
+      <div class="stock-left">
+        <div class="stock-icon">🟠</div>
+        <div>
+          <p class="stock-name">Zomato</p>
+          <p class="stock-meta">NSE · ZOMATO · Consumer Tech</p>
+        </div>
+      </div>
+      <div class="stock-right">
+        <p class="stock-price">₹234</p>
+        <p class="stock-change positive">+4.2%</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CRYPTO ── -->
+  <div id="tab-crypto" style="display:none">
+    <div class="teen-stock-notice" style="border-color:rgba(251,191,36,0.3);background:rgba(251,191,36,0.08);">
+      <span>⚠️</span>
+      <span style="color:var(--yellow)">Crypto is highly volatile. Limit: ₹500 max for teens. Parent approval required. Educational purpose only.</span>
+    </div>
+    <div class="crypto-grid">
+      <div class="crypto-card" onclick="openInvest('Bitcoin','BTC','+3.4%','₹10')">
+        <div class="crypto-icon">₿</div>
+        <div class="crypto-name">Bitcoin</div>
+        <div class="crypto-price">₹54,20,000</div>
+        <div class="crypto-change positive">+3.4%</div>
+        <div class="crypto-limit">Max ₹500</div>
+      </div>
+      <div class="crypto-card" onclick="openInvest('Ethereum','ETH','+2.1%','₹10')">
+        <div class="crypto-icon">⟠</div>
+        <div class="crypto-name">Ethereum</div>
+        <div class="crypto-price">₹2,84,000</div>
+        <div class="crypto-change positive">+2.1%</div>
+        <div class="crypto-limit">Max ₹500</div>
+      </div>
+      <div class="crypto-card" onclick="openInvest('Solana','SOL','-1.2%','₹10')">
+        <div class="crypto-icon">◎</div>
+        <div class="crypto-name">Solana</div>
+        <div class="crypto-price">₹12,400</div>
+        <div class="crypto-change negative">-1.2%</div>
+        <div class="crypto-limit">Max ₹500</div>
+      </div>
+      <div class="crypto-card" onclick="openInvest('Polygon','MATIC','+5.8%','₹10')">
+        <div class="crypto-icon">⬡</div>
+        <div class="crypto-name">Polygon</div>
+        <div class="crypto-price">₹68</div>
+        <div class="crypto-change positive">+5.8%</div>
+        <div class="crypto-limit">Max ₹500</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TIPS ── -->
+  <div id="tab-tips" style="display:none">
+    <div class="tips-header">
+      <div class="tips-avatar">👨‍👩‍👦</div>
+      <div>
+        <p class="tips-title">Parent-Guided Investment Tips</p>
+        <p class="tips-sub">Curated by financial experts for teens</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">01</div>
+      <div class="tip-body">
+        <p class="tip-h">Start with SIP, not lump sum</p>
+        <p class="tip-p">Invest small amounts every month. ₹100/month grows to ₹25,000 in 10 years at 12% return!</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">02</div>
+      <div class="tip-body">
+        <p class="tip-h">Index funds beat most people</p>
+        <p class="tip-p">Nifty 50 index funds outperform 90% of actively managed funds. Simple and powerful.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">03</div>
+      <div class="tip-body">
+        <p class="tip-h">Never invest more than you can lose</p>
+        <p class="tip-p">Especially in crypto and stocks. Keep 70% in safe options like FD or liquid funds.</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">04</div>
+      <div class="tip-body">
+        <p class="tip-h">The magic of compounding</p>
+        <p class="tip-p">Invest at 16 instead of 25 and you'll have 3x more money at retirement. Time is your biggest asset!</p>
+      </div>
+    </div>
+    <div class="tip-item">
+      <div class="tip-num">05</div>
+      <div class="tip-body">
+        <p class="tip-h">Always ask your parents before investing</p>
+        <p class="tip-p">FinTeen notifies your guardian for investments above ₹2,000. This keeps you safe and accountable.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- TAB BAR -->
+<nav class="tabbar">
+  <div class="tab-item" onclick="window.location.href='home.html'"><span class="tab-icon">🏠</span><span class="tab-label">Home</span></div>
+  <div class="tab-item" onclick="window.location.href='payment.html'"><span class="tab-icon">💸</span><span class="tab-label">Pay</span></div>
+  <div class="tab-item active"><span class="tab-icon">📈</span><span class="tab-label">Invest</span></div>
+  <div class="tab-item" onclick="window.location.href='loan.html'"><span class="tab-icon">🏦</span><span class="tab-label">Loan</span></div>
+  <div class="tab-item" onclick="window.location.href='wallet.html'"><span class="tab-icon">👛</span><span class="tab-label">Wallet</span></div>
+</nav>
+
+<!-- INVEST MODAL -->
+<div class="modal-overlay" id="investModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modalFundName">Invest in Fund</div>
+    <div class="modal-meta" id="modalFundMeta"></div>
+    <div class="input-group" style="margin-top:16px;">
+      <label>Investment Amount (₹)</label>
+      <input type="number" class="input-field" id="investAmt" placeholder="Enter amount" />
+    </div>
+    <div class="sip-toggle">
+      <label class="toggle-label">
+        <input type="checkbox" id="sipCheck" /> Enable SIP (Monthly)
+      </label>
+    </div>
+    <div class="parent-approval-chip">
+      <span>👪</span> Parent approval will be sent for amounts above ₹2,000
+    </div>
+    <button class="btn btn-primary" style="margin-top:14px;" onclick="confirmInvest()">Confirm Investment</button>
+    <button class="btn btn-secondary" style="margin-top:10px;" onclick="closeInvest()">Cancel</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="investment.js"></script>
+</body>
+</html>

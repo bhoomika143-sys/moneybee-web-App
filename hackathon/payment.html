@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Moneybee&#128029; — Pay</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="payment.css" />
+  <link rel="icon" type="image/png" href="moneybee.png">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <button class="back-btn" onclick="history.back()">← Back</button>
+  <div class="nav-title">Send Money</div>
+  <button class="nav-btn" onclick="window.location.href='home.html'">🏠</button>
+</nav>
+
+<main class="main-content">
+
+  <!-- Recent contacts -->
+  <div class="section-header fade-up">
+    <span class="section-title">Recent</span>
+    <span class="section-link" onclick="openSearch()">Search 🔍</span>
+  </div>
+  <div class="contacts-row fade-up">
+    <div class="contact-chip active" onclick="selectContact('Rahul','rahul@finteen','9876543210')">
+      <div class="chip-avatar" style="background:linear-gradient(135deg,#f472b6,#ec4899)">R</div>
+      <span>Rahul</span>
+    </div>
+    <div class="contact-chip" onclick="selectContact('Priya','priya@oksbi','9123456789')">
+      <div class="chip-avatar" style="background:linear-gradient(135deg,#34d399,#059669)">P</div>
+      <span>Priya</span>
+    </div>
+    <div class="contact-chip" onclick="selectContact('Mom','mom@paytm','9800012345')">
+      <div class="chip-avatar" style="background:linear-gradient(135deg,#fbbf24,#f59e0b)">M</div>
+      <span>Mom</span>
+    </div>
+    <div class="contact-chip" onclick="selectContact('Dad','dad@upi','9811122233')">
+      <div class="chip-avatar" style="background:linear-gradient(135deg,#38bdf8,#0ea5e9)">D</div>
+      <span>Dad</span>
+    </div>
+    <div class="contact-chip" onclick="openSearch()">
+      <div class="chip-avatar" style="background:var(--card2)">+</div>
+      <span>New</span>
+    </div>
+  </div>
+
+  <!-- PAYMENT FORM -->
+  <div class="card fade-up delay-1">
+    <div class="pay-methods">
+      <button class="method-btn active" onclick="setMethod(this,'upi')">UPI ID</button>
+      <button class="method-btn" onclick="setMethod(this,'phone')">Phone</button>
+      <button class="method-btn" onclick="setMethod(this,'account')">Account</button>
+    </div>
+
+    <!-- Receiver field -->
+    <div class="input-group" style="margin-top:14px;">
+      <label id="receiverLabel">UPI ID / Name</label>
+      <div class="receiver-field">
+        <input type="text" class="input-field" id="receiverInput"
+          placeholder="Enter UPI ID e.g. name@paytm" />
+        <button class="verify-btn" onclick="verifyReceiver()">Verify</button>
+      </div>
+    </div>
+
+    <!-- Verified receiver card -->
+    <div class="verified-card" id="verifiedCard" style="display:none;">
+      <div class="verified-avatar" id="verifiedAvatar">R</div>
+      <div class="verified-info">
+        <p class="verified-name" id="verifiedName">Rahul Sharma</p>
+        <p class="verified-upi" id="verifiedUPI">rahul@finteen</p>
+      </div>
+      <span class="verified-tick">✓</span>
+    </div>
+
+    <!-- Amount -->
+    <div class="amount-display">
+      <span class="amount-prefix">₹</span>
+      <input type="number" class="amount-input" id="amountInput"
+        placeholder="0" min="1" max="10000" onchange="checkLimit()" />
+    </div>
+    <div class="teen-limit-note" id="limitNote">
+      💡 Teen limit: ₹5,000 per transaction
+    </div>
+
+    <!-- Quick amounts -->
+    <div class="quick-amounts">
+      <button class="qa-chip" onclick="setAmount(100)">₹100</button>
+      <button class="qa-chip" onclick="setAmount(200)">₹200</button>
+      <button class="qa-chip" onclick="setAmount(500)">₹500</button>
+      <button class="qa-chip" onclick="setAmount(1000)">₹1000</button>
+    </div>
+
+    <!-- Note -->
+    <div class="input-group">
+      <label>Note (optional)</label>
+      <input type="text" class="input-field" placeholder="e.g. Lunch, Rent, Birthday gift 🎁" id="noteInput" />
+    </div>
+
+    <!-- Send Button -->
+    <button class="btn btn-primary" onclick="sendMoney()">
+      💸 Send Money
+    </button>
+    <button class="btn btn-secondary" style="margin-top:10px;" onclick="openQR()">
+      📷 Pay via QR Code
+    </button>
+  </div>
+
+  <!-- UPI APPS -->
+  <div class="section-header fade-up">
+    <span class="section-title">Pay via App</span>
+  </div>
+  <div class="upi-apps fade-up">
+    <div class="upi-app" onclick="showToast('Opening GPay...')">
+      <div class="upi-icon">🟢</div><span>GPay</span>
+    </div>
+    <div class="upi-app" onclick="showToast('Opening PhonePe...')">
+      <div class="upi-icon">🟣</div><span>PhonePe</span>
+    </div>
+    <div class="upi-app" onclick="showToast('Opening Paytm...')">
+      <div class="upi-icon">🔵</div><span>Paytm</span>
+    </div>
+    <div class="upi-app" onclick="showToast('Opening BHIM...')">
+      <div class="upi-icon">🟠</div><span>BHIM</span>
+    </div>
+  </div>
+
+</main>
+
+<!-- TAB BAR -->
+<nav class="tabbar">
+  <div class="tab-item" onclick="window.location.href='home.html'"><span class="tab-icon">🏠</span><span class="tab-label">Home</span></div>
+  <div class="tab-item active"><span class="tab-icon">💸</span><span class="tab-label">Pay</span></div>
+  <div class="tab-item" onclick="window.location.href='investment.html'"><span class="tab-icon">📈</span><span class="tab-label">Invest</span></div>
+  <div class="tab-item" onclick="window.location.href='loan.html'"><span class="tab-icon">🏦</span><span class="tab-label">Loan</span></div>
+  <div class="tab-item" onclick="window.location.href='wallet.html'"><span class="tab-icon">👛</span><span class="tab-label">Wallet</span></div>
+</nav>
+
+<!-- QR MODAL -->
+<div class="modal-overlay" id="qrModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Scan to Pay</div>
+    <div class="qr-display">
+      <canvas id="qrCanvas"></canvas>
+      <p class="qr-upi">finteen.aryan@oksbi</p>
+      <p class="qr-name">Aryan Kumar</p>
+    </div>
+    <button class="btn btn-secondary" onclick="closeQR()">✕ Close</button>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal-sheet" style="text-align:center;">
+    <div class="modal-handle"></div>
+    <div class="success-anim">✅</div>
+    <h2 class="success-title">Payment Sent!</h2>
+    <p class="success-sub" id="successMsg">₹500 sent to Rahul</p>
+    <div class="success-ref">Ref: FT2024041200123</div>
+    <button class="btn btn-primary" style="margin-top:20px;" onclick="closeSuccess()">Done</button>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <div class="search-input-wrap">
+      <input type="text" placeholder="Search name, UPI or phone..." id="searchInput" oninput="filterSearch()" />
+      <button class="search-close" onclick="closeSearch()">✕</button>
+    </div>
+    <div id="searchResults"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="payment.js"></script>
+</body>
+</html>

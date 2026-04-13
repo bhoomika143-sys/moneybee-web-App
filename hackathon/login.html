@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>MoneyBee&#128029; — Login</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="icon" type="image/png" href="moneybee.png">
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div class="splash" id="splash">
+  <div class="splash-logo">
+    <div class="logo-mark">MB</div>
+    <div class="logo-text">MoneyBee&#128029;</div>
+  </div>
+  <div class="splash-tagline">Smart Money for Gen Z</div>
+</div>
+
+<!-- LOGIN PAGE -->
+<div class="login-page" id="loginPage">
+  <!-- Background orbs -->
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="login-header">
+    <div class="login-logo">
+      <div class="logo-mark-sm">MB</div>
+      <span>MoneyBee&#128029;</span>
+    </div>
+    <p class="login-sub">India's first teen-powered wallet 🚀</p>
+  </div>
+
+  <!-- Tab toggle -->
+  <div class="auth-toggle">
+    <button class="toggle-btn active" id="loginTab" onclick="switchTab('login')">Login</button>
+    <button class="toggle-btn" id="signupTab" onclick="switchTab('signup')">Sign Up</button>
+  </div>
+
+  <!-- LOGIN FORM -->
+  <div class="auth-card" id="loginForm">
+    <div class="input-group">
+      <label>Account Number / Email / UPI ID</label>
+      <div class="input-icon-wrap">
+        <span class="input-icon">👤</span>
+        <input type="text" class="input-field" placeholder="e.g. 1234567890 or you@finteen.in" id="loginId" />
+      </div>
+    </div>
+    <div class="input-group">
+      <label>Password / PIN</label>
+      <div class="input-icon-wrap">
+        <span class="input-icon">🔒</span>
+        <input type="password" class="input-field" placeholder="Enter your 4-digit PIN or password" id="loginPin" />
+        <span class="input-eye" onclick="togglePwd('loginPin', this)">👁</span>
+      </div>
+    </div>
+    <div class="forgot-row">
+      <span class="forgot-link">Forgot PIN?</span>
+    </div>
+    <button class="btn btn-primary" onclick="doLogin()">
+      <span>Login to FinTeen</span> <span>→</span>
+    </button>
+    <div class="divider-text"><span>or continue with</span></div>
+    <div class="social-row">
+      <button class="social-btn" onclick="doLogin()">🔵 Google</button>
+      <button class="social-btn" onclick="doLogin()">📱 Mobile OTP</button>
+    </div>
+  </div>
+
+  <!-- SIGNUP FORM -->
+  <div class="auth-card" id="signupForm" style="display:none;">
+    <div class="age-notice">
+      <span>🎯</span>
+      <span>For under 18: a parent/guardian must co-sign your account</span>
+    </div>
+    <div class="input-group">
+      <label>Full Name</label>
+      <div class="input-icon-wrap">
+        <span class="input-icon">✏️</span>
+        <input type="text" class="input-field" placeholder="Your full name" />
+      </div>
+    </div>
+    <div class="input-group">
+      <label>Date of Birth</label>
+      <div class="input-icon-wrap">
+        <span class="input-icon">📅</span>
+        <input type="date" class="input-field" id="dobInput" onchange="checkAge()" />
+      </div>
+    </div>
+    <div class="minor-notice" id="minorNotice" style="display:none;">
+      <span>👪</span>
+      <span>You're under 18 — parent approval will be required for loans, insurance & large investments.</span>
+    </div>
+    <div class="input-group">
+      <label>Email ID</label>
+      <div class="input-icon-wrap">
+        <span class="input-icon">✉️</span>
+        <input type="email" class="input-field" placeholder="you@email.com" />
+      </div>
+    </div>
+    <div class="input-group">
+      <label>Mobile Number</label>
+      <div class="input-icon-wrap">
+        <span class="input-icon">📱</span>
+        <input type="tel" class="input-field" placeholder="+91 XXXXX XXXXX" />
+      </div>
+    </div>
+    <div class="input-group">
+      <label>Set 4-digit PIN</label>
+      <div class="input-icon-wrap">
+        <span class="input-icon">🔐</span>
+        <input type="password" class="input-field" placeholder="Create your secure PIN" maxlength="4" />
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="doLogin()">
+      <span>Create Account</span> <span>🎉</span>
+    </button>
+  </div>
+
+  <p class="terms-text">By continuing, you agree to FinTeen's <span>Terms</span> & <span>Privacy Policy</span></p>
+</div>
+
+<script src="login.js"></script>
+</body>
+</html>

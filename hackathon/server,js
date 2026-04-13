@@ -1,0 +1,45 @@
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+let notifications = [
+  {
+    id: 1,
+    title: "Payment Sent",
+    message: "₹250 sent to Rahul Sharma",
+    time: "2 min ago",
+    type: "success"
+  },
+  {
+    id: 2,
+    title: "Low Balance",
+    message: "Your wallet balance is below ₹500",
+    time: "10 min ago",
+    type: "alert"
+  },
+  {
+    id: 3,
+    title: "New Offer 🎉",
+    message: "Get 20% cashback on food orders",
+    time: "1 hr ago",
+    type: "info"
+  }
+];
+
+// GET
+app.get("/notifications", (req, res) => {
+  res.json(notifications);
+});
+
+// DELETE
+app.delete("/notifications", (req, res) => {
+  notifications = [];
+  res.json({ message: "Cleared" });
+});
+
+app.listen(3000, () => {
+  console.log("Server running on http://localhost:3000");
+});

@@ -1,0 +1,141 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f172a;
+  color: #fff;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* MAIN */
+.main {
+  padding: 16px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.clear-btn {
+  background: #ef4444;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* LIST */
+.notif-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* CARD */
+.notif-card {
+  background: #1e293b;
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid #334155;
+  transition: 0.2s;
+}
+
+.notif-card:hover {
+  transform: scale(1.02);
+}
+
+/* ICON */
+.notif-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* TYPES */
+.success { background: rgba(34,197,94,0.2); }
+.alert { background: rgba(239,68,68,0.2); }
+.info { background: rgba(59,130,246,0.2); }
+
+/* TEXT */
+.notif-text {
+  flex: 1;
+}
+
+.notif-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.notif-desc {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.notif-time {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+.notif-card {
+  background: #1a1a2e;
+  padding: 14px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.notif-card h4 {
+  margin: 0 0 5px;
+}
+
+.notif-card span {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.clear-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+.notif-card.saving { border-left: 4px solid #4caf50; }
+.notif-card.goal { border-left: 4px solid #2196f3; }
+.notif-card.reward { border-left: 4px solid #ff9800; }
+.notif-card.alert { border-left: 4px solid #f44336; }
+.notif-card.gold { border-left: 4px solid gold; }
+.notif-card.insurance { border-left: 4px solid #9c27b0; }

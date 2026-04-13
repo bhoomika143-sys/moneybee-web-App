@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<title>moneybee&#128029; – Features</title>
+<link rel="stylesheet" href="global.css"/>
+<link rel="stylesheet" href="features.css"/>
+<link rel="icon" type="image/png" href="moneybee.png">
+</head>
+<body>
+
+<nav class="navbar">
+  <span class="logo">moneybee&#128029;</span>
+  <div class="nav-actions">
+    <button class="nav-btn" id="notifBtn" onclick="openPanel('notifPanel')">
+      🔔<span class="badge"></span>
+    </button>
+    <button class="nav-btn profile-btn" onclick="goPage('profile')">
+      <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=teen" alt="profile"/>
+    </button>
+  </div>
+</nav>
+
+<div class="page active" id="page-features">
+  <div class="main-content">
+
+    <!-- Feature Nav Pills -->
+    <div class="feat-tabs fade-up" id="featTabs">
+      <button class="feat-tab active" data-tab="overview">🏠 Overview</button>
+      <button class="feat-tab" data-tab="expenses">📊 Expenses</button>
+      <button class="feat-tab" data-tab="goals">🎯 Goals</button>
+      <button class="feat-tab" data-tab="savings">💰 Savings</button>
+    </div>
+
+    <!-- ===== OVERVIEW TAB ===== -->
+    <div id="tab-overview">
+      <!-- Money Save Tips -->
+      <div class="section-header fade-up">
+        <span class="section-title">💡 Smart Tips</span>
+        <span class="section-link" onclick="refreshTips()">Refresh</span>
+      </div>
+      <div class="tips-slider fade-up delay-1" id="tipsSlider">
+        <div class="tip-slide">
+          <div class="ts-icon">☕</div>
+          <div class="ts-content">
+            <div class="ts-title">Skip the canteen coffee</div>
+            <div class="ts-text">Making coffee at home saves ₹1,500/month. That's ₹18,000 a year!</div>
+          </div>
+          <div class="ts-save">Save ₹1,500</div>
+        </div>
+        <div class="tip-slide">
+          <div class="ts-icon">🚌</div>
+          <div class="ts-content">
+            <div class="ts-title">Use public transport</div>
+            <div class="ts-text">A monthly bus pass costs ₹500 vs ₹3,000 on cabs. Smart move!</div>
+          </div>
+          <div class="ts-save">Save ₹2,500</div>
+        </div>
+        <div class="tip-slide">
+          <div class="ts-icon">📱</div>
+          <div class="ts-content">
+            <div class="ts-title">Share subscriptions</div>
+            <div class="ts-text">Split Netflix/Spotify with friends. You pay 1/4th the price!</div>
+          </div>
+          <div class="ts-save">Save ₹800</div>
+        </div>
+      </div>
+
+      <!-- Spending summary donut -->
+      <div class="section-header fade-up delay-1">
+        <span class="section-title">This Month</span>
+        <span class="section-link">Apr 2025</span>
+      </div>
+      <div class="card fade-up delay-2" style="display:flex;gap:16px;align-items:center">
+        <canvas id="donutChart" width="110" height="110"></canvas>
+        <div class="donut-legend" id="donutLegend"></div>
+      </div>
+
+      <!-- Quick actions -->
+      <div class="section-header fade-up delay-2">
+        <span class="section-title">Quick Actions</span>
+      </div>
+      <div class="quick-feat-grid fade-up delay-3">
+        <div class="qf-item" onclick="switchTab('expenses')">
+          <div class="qf-icon">📊</div>
+          <div class="qf-label">Track Expenses</div>
+        </div>
+        <div class="qf-item" onclick="switchTab('goals')">
+          <div class="qf-icon">🎯</div>
+          <div class="qf-label">Set Goals</div>
+        </div>
+        <div class="qf-item" onclick="switchTab('savings')">
+          <div class="qf-icon">🏦</div>
+          <div class="qf-label">My Savings</div>
+        </div>
+        <div class="qf-item" onclick="openAI()">
+          <div class="qf-icon">🤖</div>
+          <div class="qf-label">AI Assistant</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== EXPENSES TAB ===== -->
+    <div id="tab-expenses" style="display:none">
+      <div class="section-header fade-up">
+        <span class="section-title">Expense Categories</span>
+        <span class="section-link" onclick="openModal('addExpModal')">+ Add</span>
+      </div>
+
+      <!-- Bar chart -->
+      <div class="card fade-up delay-1" style="padding:16px">
+        <canvas id="barChart" width="380" height="180"></canvas>
+      </div>
+
+      <!-- Category cards -->
+      <div class="exp-grid fade-up delay-2" id="expGrid">
+        <!-- filled by JS -->
+      </div>
+
+      <!-- Expense list -->
+      <div class="section-header fade-up delay-2">
+        <span class="section-title">Recent Expenses</span>
+      </div>
+      <div class="txn-list fade-up delay-3" id="expList">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <!-- ===== GOALS TAB ===== -->
+    <div id="tab-goals" style="display:none">
+      <div class="section-header fade-up">
+        <span class="section-title">My Goals</span>
+        <span class="section-link" onclick="openModal('addGoalModal')">+ New Goal</span>
+      </div>
+      <div id="goalsList" class="fade-up delay-1">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <!-- ===== SAVINGS TAB ===== -->
+    <div id="tab-savings" style="display:none">
+      <div class="savings-summary card fade-up">
+        <div class="ss-row">
+          <div class="ss-item">
+            <div class="ss-val">₹8,250</div>
+            <div class="ss-label">Total Saved</div>
+          </div>
+          <div class="ss-div"></div>
+          <div class="ss-item">
+            <div class="ss-val" style="color:var(--green)">+₹650</div>
+            <div class="ss-label">This Month</div>
+          </div>
+          <div class="ss-div"></div>
+          <div class="ss-item">
+            <div class="ss-val" style="color:var(--yellow)">4.2%</div>
+            <div class="ss-label">Interest p.a.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Savings chart -->
+      <div class="card fade-up delay-1" style="padding:16px">
+        <div class="section-title" style="margin-bottom:12px">Savings Growth</div>
+        <canvas id="savingsChart" width="360" height="160"></canvas>
+      </div>
+
+      <!-- Savings rounds -->
+      <div class="section-header fade-up delay-2">
+        <span class="section-title">Auto-Save Rules</span>
+        <span class="section-link" onclick="openModal('addSaveRuleModal')">+ Add Rule</span>
+      </div>
+      <div class="save-rules fade-up delay-2">
+        <div class="save-rule-card">
+          <div class="src-left">
+            <div class="src-icon">🔄</div>
+            <div>
+              <div class="src-name">Round-Up Savings</div>
+              <div class="src-desc">Round up every payment to nearest ₹10</div>
+            </div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox" checked/><span class="toggle-slider"></span></label>
+        </div>
+        <div class="save-rule-card">
+          <div class="src-left">
+            <div class="src-icon">📅</div>
+            <div>
+              <div class="src-name">Weekly Save ₹100</div>
+              <div class="src-desc">Auto-save ₹100 every Sunday</div>
+            </div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox" checked/><span class="toggle-slider"></span></label>
+        </div>
+        <div class="save-rule-card">
+          <div class="src-left">
+            <div class="src-icon">🎯</div>
+            <div>
+              <div class="src-name">Goal-Based Save</div>
+              <div class="src-desc">₹200/week toward Phone goal</div>
+            </div>
+          </div>
+          <label class="toggle-switch"><input type="checkbox"/><span class="toggle-slider"></span></label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tabbar">
+  <div class="tab-item" onclick="goPage('home')"><div class="tab-icon">🏠</div><div class="tab-label">Home</div></div>
+  <div class="tab-item" onclick="goPage('payment')"><div class="tab-icon">💸</div><div class="tab-label">Pay</div></div>
+  <div class="tab-item" onclick="goPage('investment')"><div class="tab-icon">📈</div><div class="tab-label">Invest</div></div>
+  <div class="tab-item" onclick="goPage('wallet')"><div class="tab-icon">👛</div><div class="tab-label">Wallet</div></div>
+  <div class="tab-item active"><div class="tab-icon">✨</div><div class="tab-label">Features</div></div>
+</div>
+
+<!-- NOTIFICATION PANEL -->
+<div class="side-panel" id="notifPanel">
+  <div class="panel-header">
+    <span class="panel-title">🔔 Notifications</span>
+    <button class="panel-close" onclick="closePanel('notifPanel')">✕</button>
+  </div>
+  <div class="notif-list" id="notifList">
+    <!-- filled by JS -->
+  </div>
+</div>
+<div class="panel-backdrop" id="panelBackdrop" onclick="closePanels()"></div>
+
+<!-- AI ASSISTANT -->
+<div class="modal-overlay" id="aiModal">
+  <div class="modal-sheet ai-sheet">
+    <div class="modal-handle"></div>
+    <div class="ai-header">
+      <div class="ai-avatar">🤖</div>
+      <div>
+        <div class="ai-name">InsurPay AI</div>
+        <div class="ai-status"><span class="glow-dot"></span> Online</div>
+      </div>
+    </div>
+    <div class="ai-chat" id="aiChat">
+      <div class="ai-msg bot">
+        <div class="ai-bubble">Hi Rahul! 👋 I'm your personal finance assistant. How can I help you today?</div>
+      </div>
+    </div>
+    <div class="ai-quick-btns" id="aiQuickBtns">
+      <button class="ai-qbtn" onclick="sendAIMsg('How can I save more money?')">💰 Save tips</button>
+      <button class="ai-qbtn" onclick="sendAIMsg('Where am I spending the most?')">📊 Spending</button>
+      <button class="ai-qbtn" onclick="sendAIMsg('What insurance should I get?')">🛡️ Insurance</button>
+      <button class="ai-qbtn" onclick="sendAIMsg('How do I start investing?')">📈 Invest</button>
+    </div>
+    <div class="ai-input-row">
+      <input class="ai-input" id="aiInput" type="text" placeholder="Ask me anything..." onkeydown="if(event.key==='Enter')sendAIMsg()"/>
+      <button class="ai-send" onclick="sendAIMsg()">➤</button>
+    </div>
+    <button class="btn btn-secondary" style="margin-top:8px" onclick="closeModal('aiModal')">Close</button>
+  </div>
+</div>
+
+<!-- ADD EXPENSE MODAL -->
+<div class="modal-overlay" id="addExpModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Add Expense</div>
+    <div class="input-group">
+      <label>Description</label>
+      <input class="input-field" id="expDesc" type="text" placeholder="e.g. Lunch at school"/>
+    </div>
+    <div class="input-group">
+      <label>Amount (₹)</label>
+      <input class="input-field" id="expAmt" type="number" placeholder="0.00" min="1"/>
+    </div>
+    <div class="input-group">
+      <label>Category</label>
+      <select class="input-field" id="expCat">
+        <option value="food">🍔 Food</option>
+        <option value="travel">🚌 Travel</option>
+        <option value="education">📚 Education</option>
+        <option value="entertainment">🎮 Entertainment</option>
+        <option value="health">💊 Health</option>
+        <option value="other">📦 Other</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" onclick="addExpense()">Add Expense</button>
+    <button class="btn btn-secondary" style="margin-top:8px" onclick="closeModal('addExpModal')">Cancel</button>
+  </div>
+</div>
+
+<!-- ADD GOAL MODAL -->
+<div class="modal-overlay" id="addGoalModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Set a New Goal 🎯</div>
+    <div class="input-group">
+      <label>Goal Name</label>
+      <input class="input-field" id="goalName" type="text" placeholder="e.g. New iPhone"/>
+    </div>
+    <div class="input-group">
+      <label>Target Amount (₹)</label>
+      <input class="input-field" id="goalTarget" type="number" placeholder="0.00"/>
+    </div>
+    <div class="input-group">
+      <label>Target Date</label>
+      <input class="input-field" id="goalDate" type="date"/>
+    </div>
+    <div class="goal-icons" id="goalIconSelect">
+      <button class="gi-btn active" data-icon="📱">📱</button>
+      <button class="gi-btn" data-icon="🎮">🎮</button>
+      <button class="gi-btn" data-icon="✈️">✈️</button>
+      <button class="gi-btn" data-icon="📚">📚</button>
+      <button class="gi-btn" data-icon="🎸">🎸</button>
+      <button class="gi-btn" data-icon="🚲">🚲</button>
+      <button class="gi-btn" data-icon="💻">💻</button>
+      <button class="gi-btn" data-icon="🎯">🎯</button>
+    </div>
+    <button class="btn btn-primary" style="margin-top:12px" onclick="addGoal()">Save Goal</button>
+    <button class="btn btn-secondary" style="margin-top:8px" onclick="closeModal('addGoalModal')">Cancel</button>
+  </div>
+</div>
+
+<!-- SAVE RULE MODAL -->
+<div class="modal-overlay" id="addSaveRuleModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Add Auto-Save Rule</div>
+    <div class="input-group">
+      <label>Rule Type</label>
+      <select class="input-field" id="ruleType">
+        <option>Round-Up Savings</option>
+        <option>Fixed Weekly Save</option>
+        <option>Fixed Monthly Save</option>
+        <option>Goal-Based Save</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label>Amount (₹)</label>
+      <input class="input-field" type="number" placeholder="100"/>
+    </div>
+    <button class="btn btn-primary" onclick="addSaveRule()">Save Rule</button>
+    <button class="btn btn-secondary" style="margin-top:8px" onclick="closeModal('addSaveRuleModal')">Cancel</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="features.js"></script>
+</body>
+</html>

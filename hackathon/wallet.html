@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<title>moneybee&#128029 – Wallet</title>
+<link rel="stylesheet" href="global.css"/>
+<link rel="stylesheet" href="wallet.css"/>
+<link rel="icon" type="image/png" href="moneybee.png">
+</head>
+<body>
+
+<nav class="navbar">
+  <span class="logo">Moneybee&#128029;</span>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="showSearch()">🔍</button>
+    <button class="nav-btn profile-btn" onclick="goPage('profile')">
+      <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=teen" alt="profile"/>
+    </button>
+  </div>
+</nav>
+
+<div class="page active" id="page-wallet">
+  <div class="main-content">
+
+    <!-- Wallet Card -->
+    <div class="wallet-card fade-up">
+      <div class="wc-top">
+        <div>
+          <div class="wc-label">Available Balance</div>
+          <div class="wc-amount" id="walletBal">₹2,450.00</div>
+        </div>
+        <div class="wc-logo">💳</div>
+      </div>
+      <div class="wc-id">Wallet ID: <span>INS-2025-7842</span></div>
+      <div class="wc-actions">
+        <button class="wca-btn" onclick="openModal('addMoneyModal')">
+          <div class="wca-icon">➕</div>
+          <span>Add Money</span>
+        </button>
+        <button class="wca-btn" onclick="openModal('withdrawModal')">
+          <div class="wca-icon">⬆️</div>
+          <span>Withdraw</span>
+        </button>
+        <button class="wca-btn" onclick="goPage('payment')">
+          <div class="wca-icon">💸</div>
+          <span>Pay</span>
+        </button>
+        <button class="wca-btn" onclick="openModal('qrModal')">
+          <div class="wca-icon">📲</div>
+          <span>QR Code</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Cashback & Coupons row -->
+    <div class="reward-row fade-up delay-1">
+      <div class="reward-card" onclick="openModal('cashbackModal')">
+        <div class="reward-icon">💰</div>
+        <div class="reward-val">₹127</div>
+        <div class="reward-label">Cashback</div>
+      </div>
+      <div class="reward-card" onclick="openModal('couponModal')">
+        <div class="reward-icon">🎫</div>
+        <div class="reward-val">3</div>
+        <div class="reward-label">Coupons</div>
+      </div>
+      <div class="reward-card spin-card" onclick="openModal('spinModal')">
+        <div class="reward-icon spin-ani">🎡</div>
+        <div class="reward-val">Spin!</div>
+        <div class="reward-label">Win Cashback</div>
+      </div>
+    </div>
+
+    <!-- Linked Accounts -->
+    <div class="section-header fade-up delay-1">
+      <span class="section-title">Linked Accounts</span>
+      <span class="section-link" onclick="openModal('linkModal')">+ Link New</span>
+    </div>
+    <div class="linked-list fade-up delay-2">
+      <div class="linked-item">
+        <div class="bank-logo sbi">SBI</div>
+        <div class="linked-info">
+          <div class="linked-name">State Bank of India</div>
+          <div class="linked-num">•••• •••• 4829</div>
+        </div>
+        <div class="tag green">Primary</div>
+      </div>
+      <div class="linked-item" style="border-bottom:none">
+        <div class="bank-logo hdfc">HDFC</div>
+        <div class="linked-info">
+          <div class="linked-name">HDFC Bank</div>
+          <div class="linked-num">•••• •••• 7261</div>
+        </div>
+        <div class="tag">Savings</div>
+      </div>
+    </div>
+
+    <!-- Transaction History -->
+    <div class="section-header fade-up delay-2">
+      <span class="section-title">Transactions</span>
+      <span class="section-link">Filter</span>
+    </div>
+
+    <!-- Filter chips -->
+    <div class="filter-chips fade-up delay-2" id="filterChips">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="credit">Credits</button>
+      <button class="chip" data-filter="debit">Debits</button>
+      <button class="chip" data-filter="cashback">Cashback</button>
+    </div>
+
+    <div class="txn-list fade-up delay-3" id="txnList">
+      <div class="txn-item" data-type="credit">
+        <div class="txn-avatar" style="background:linear-gradient(135deg,#34d399,#059669)">💰</div>
+        <div class="txn-info">
+          <div class="txn-name">Money Added</div>
+          <div class="txn-detail">From SBI •••4829 · 10 Apr</div>
+        </div>
+        <div class="txn-amt green">+₹1,000</div>
+      </div>
+      <div class="txn-item" data-type="debit">
+        <div class="txn-avatar" style="background:linear-gradient(135deg,#f87171,#dc2626)">🛒</div>
+        <div class="txn-info">
+          <div class="txn-name">Amazon Pay</div>
+          <div class="txn-detail">Shopping · 09 Apr</div>
+        </div>
+        <div class="txn-amt red">-₹350</div>
+      </div>
+      <div class="txn-item" data-type="cashback">
+        <div class="txn-avatar" style="background:linear-gradient(135deg,#fbbf24,#d97706)">⭐</div>
+        <div class="txn-info">
+          <div class="txn-name">Cashback Received</div>
+          <div class="txn-detail">Swiggy Order · 08 Apr</div>
+        </div>
+        <div class="txn-amt green">+₹27</div>
+      </div>
+      <div class="txn-item" data-type="debit">
+        <div class="txn-avatar" style="background:linear-gradient(135deg,#7c6bff,#5b4fff)">🛡️</div>
+        <div class="txn-info">
+          <div class="txn-name">Insurance Premium</div>
+          <div class="txn-detail">Health Shield Basic · 01 Apr</div>
+        </div>
+        <div class="txn-amt red">-₹299</div>
+      </div>
+      <div class="txn-item" data-type="credit" style="border-bottom:none">
+        <div class="txn-avatar" style="background:linear-gradient(135deg,#38bdf8,#0284c7)">🎁</div>
+        <div class="txn-info">
+          <div class="txn-name">Referral Bonus</div>
+          <div class="txn-detail">Friend joined · 28 Mar</div>
+        </div>
+        <div class="txn-amt green">+₹100</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tabbar">
+  <div class="tab-item" onclick="goPage('home')"><div class="tab-icon">🏠</div><div class="tab-label">Home</div></div>
+  <div class="tab-item" onclick="goPage('payment')"><div class="tab-icon">💸</div><div class="tab-label">Pay</div></div>
+  <div class="tab-item" onclick="goPage('investment')"><div class="tab-icon">📈</div><div class="tab-label">Invest</div></div>
+  <div class="tab-item" onclick="goPage('loan')"><div class="tab-icon">🏦</div><div class="tab-label">Loan</div></div>
+  <div class="tab-item active"><div class="tab-icon">👛</div><div class="tab-label">Wallet</div></div>
+</div>
+
+<!-- ADD MONEY MODAL -->
+<div class="modal-overlay" id="addMoneyModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Add Money to Wallet</div>
+    <div class="am-balance">Current Balance: <strong>₹2,450</strong></div>
+    <div class="amount-quick">
+      <button class="amt-btn" onclick="setAmt(200)">₹200</button>
+      <button class="amt-btn" onclick="setAmt(500)">₹500</button>
+      <button class="amt-btn" onclick="setAmt(1000)">₹1,000</button>
+      <button class="amt-btn" onclick="setAmt(2000)">₹2,000</button>
+    </div>
+    <div class="input-group" style="margin-top:12px">
+      <label>Enter Amount</label>
+      <input class="input-field" type="number" id="addAmtInput" placeholder="₹ 0.00" min="1" max="10000"/>
+    </div>
+    <div class="input-group">
+      <label>From Account</label>
+      <select class="input-field">
+        <option>SBI •••• 4829</option>
+        <option>HDFC •••• 7261</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" onclick="addMoney()">Add Money</button>
+    <button class="btn btn-secondary" style="margin-top:8px" onclick="closeModal('addMoneyModal')">Cancel</button>
+  </div>
+</div>
+
+<!-- SPIN MODAL -->
+<div class="modal-overlay" id="spinModal">
+  <div class="modal-sheet" style="text-align:center">
+    <div class="modal-handle"></div>
+    <div class="modal-title">🎡 Spin &amp; Win</div>
+    <div class="spin-note">Spin once a day to win cashback!</div>
+    <div class="spin-wheel-wrap">
+      <canvas id="spinWheel" width="240" height="240"></canvas>
+    </div>
+    <div class="spin-result" id="spinResult"></div>
+    <button class="btn btn-primary" id="spinBtn" onclick="spinWheel()">🎡 Spin Now!</button>
+    <button class="btn btn-secondary" style="margin-top:8px" onclick="closeModal('spinModal')">Close</button>
+  </div>
+</div>
+
+<!-- CASHBACK MODAL -->
+<div class="modal-overlay" id="cashbackModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">💰 Cashback History</div>
+    <div class="cb-total">Total Earned: <strong>₹127</strong></div>
+    <div class="cb-list">
+      <div class="cb-item"><span>Swiggy Order</span><span class="txn-amt green">+₹27</span></div>
+      <div class="cb-item"><span>Zomato Order</span><span class="txn-amt green">+₹50</span></div>
+      <div class="cb-item"><span>Bus Ticket</span><span class="txn-amt green">+₹20</span></div>
+      <div class="cb-item"><span>Movie Ticket</span><span class="txn-amt green">+₹30</span></div>
+    </div>
+    <button class="btn btn-secondary" style="margin-top:16px" onclick="closeModal('cashbackModal')">Close</button>
+  </div>
+</div>
+
+<!-- COUPON MODAL -->
+<div class="modal-overlay" id="couponModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">🎫 My Coupons</div>
+    <div class="coupon-list">
+      <div class="coupon-card">
+        <div class="coupon-left">
+          <div class="coupon-code">TEEN20</div>
+          <div class="coupon-desc">20% off on food orders</div>
+          <div class="coupon-exp">Expires: 30 Apr 2025</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="copyCoupon('TEEN20')">Copy</button>
+      </div>
+      <div class="coupon-card">
+        <div class="coupon-left">
+          <div class="coupon-code">SAVE50</div>
+          <div class="coupon-desc">₹50 off on recharge ≥₹299</div>
+          <div class="coupon-exp">Expires: 15 May 2025</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="copyCoupon('SAVE50')">Copy</button>
+      </div>
+      <div class="coupon-card">
+        <div class="coupon-left">
+          <div class="coupon-code">FIRSTINS</div>
+          <div class="coupon-desc">1 month free on insurance</div>
+          <div class="coupon-exp">Expires: 01 Jun 2025</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="copyCoupon('FIRSTINS')">Copy</button>
+      </div>
+    </div>
+    <button class="btn btn-secondary" style="margin-top:8px" onclick="closeModal('couponModal')">Close</button>
+  </div>
+</div>
+
+<!-- QR MODAL -->
+<div class="modal-overlay" id="qrModal">
+  <div class="modal-sheet" style="text-align:center">
+    <div class="modal-handle"></div>
+    <div class="modal-title">📲 My QR Code</div>
+    <div class="qr-wrap">
+      <canvas id="qrCanvas" width="180" height="180"></canvas>
+    </div>
+    <div class="qr-upi">teen@insurpay</div>
+    <div class="qr-name">Rahul Sharma</div>
+    <button class="btn btn-primary" style="margin-top:16px" onclick="shareQR()">Share QR</button>
+    <button class="btn btn-secondary" style="margin-top:8px" onclick="closeModal('qrModal')">Close</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="wallet.js"></script>
+</body>
+</html>

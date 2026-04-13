@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Moneybee&#128029; — Loans</title>
+  <link rel="stylesheet" href="global.css" />
+  <link rel="stylesheet" href="loan.css" />
+  <link rel="icon" type="image/png" href="moneybee.png">
+</head>
+<body>
+
+<nav class="navbar">
+  <button class="back-btn" onclick="history.back()">← Back</button>
+  <div class="nav-title">Loans</div>
+  <div class="nav-btn" onclick="window.location.href='home.html'">🏠</div>
+</nav>
+
+<main class="main-content">
+
+  <!-- Teen loan limit banner -->
+  <div class="loan-hero fade-up">
+    <div class="loan-hero-left">
+      <p class="hero-label">Teen Loan Limit</p>
+      <h2 class="hero-amount">₹25,000</h2>
+      <div class="hero-used">
+        <div class="used-bar"><div class="used-fill" style="width:32%"></div></div>
+        <p class="used-text">₹8,000 used · ₹17,000 available</p>
+      </div>
+    </div>
+    <div class="hero-icon">🏦</div>
+  </div>
+
+  <!-- MANDATORY parent approval notice -->
+  <div class="parent-banner fade-up">
+    <span class="icon">🔒</span>
+    <span class="text">ALL loans require mandatory parent/guardian approval & co-signature. Loans are reported to your guardian.</span>
+  </div>
+
+  <!-- Loan Type Tabs -->
+  <div class="loan-tabs fade-up">
+    <button class="loan-tab active" onclick="showLoanTab('personal', this)">👤 Personal</button>
+    <button class="loan-tab" onclick="showLoanTab('education', this)">🎓 Education</button>
+    <button class="loan-tab" onclick="showLoanTab('active', this)">📋 My Loans</button>
+  </div>
+
+  <!-- ── PERSONAL LOAN ── -->
+  <div id="ltab-personal">
+
+    <div class="loan-features-row fade-up">
+      <div class="lf-item">
+        <div class="lf-icon">⚡</div>
+        <div class="lf-text">Instant<br><strong>Approval</strong></div>
+      </div>
+      <div class="lf-item">
+        <div class="lf-icon">📉</div>
+        <div class="lf-text">Low Rate<br><strong>8% p.a.</strong></div>
+      </div>
+      <div class="lf-item">
+        <div class="lf-icon">🔒</div>
+        <div class="lf-text">Max Limit<br><strong>₹25,000</strong></div>
+      </div>
+      <div class="lf-item">
+        <div class="lf-icon">📅</div>
+        <div class="lf-text">Tenure<br><strong>12 months</strong></div>
+      </div>
+    </div>
+
+    <div class="card fade-up delay-1">
+      <div class="section-title" style="margin-bottom:16px;">Apply for Personal Loan</div>
+
+      <div class="input-group">
+        <label>Loan Purpose</label>
+        <select class="input-field" id="loanPurpose">
+          <option value="">Select purpose</option>
+          <option>Buy a gadget (phone, laptop)</option>
+          <option>School/tuition fees</option>
+          <option>Sports equipment</option>
+          <option>Emergency need</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Loan Amount (₹)</label>
+        <input type="range" class="amt-slider" id="loanSlider" min="500" max="25000" step="500" value="5000" oninput="updateLoan()" />
+        <div class="slider-display">
+          <span>₹500</span>
+          <strong id="sliderAmt">₹5,000</strong>
+          <span>₹25,000</span>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Repayment Duration</label>
+        <div class="duration-btns">
+          <button class="dur-btn active" onclick="setDuration(this,3)">3 Mo</button>
+          <button class="dur-btn" onclick="setDuration(this,6)">6 Mo</button>
+          <button class="dur-btn" onclick="setDuration(this,9)">9 Mo</button>
+          <button class="dur-btn" onclick="setDuration(this,12)">12 Mo</button>
+        </div>
+      </div>
+
+      <!-- EMI Breakdown -->
+      <div class="emi-card">
+        <div class="emi-row">
+          <span>Loan Amount</span><strong id="emiPrincipal">₹5,000</strong>
+        </div>
+        <div class="emi-row">
+          <span>Interest Rate</span><strong>8% p.a.</strong>
+        </div>
+        <div class="emi-row">
+          <span>Monthly EMI</span><strong id="emiAmt" style="color:var(--accent)">₹1,734</strong>
+        </div>
+        <div class="emi-row">
+          <span>Total Payable</span><strong id="emiTotal">₹5,200</strong>
+        </div>
+        <div class="divider"></div>
+        <div class="autopay-toggle">
+          <div>
+            <p class="autopay-title">Auto-Pay EMI</p>
+            <p class="autopay-sub">Auto deduct from wallet on due date</p>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="autopayToggle" checked />
+            <span class="slider-thumb"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Parent/Guardian Phone for Approval</label>
+        <div class="input-icon-wrap">
+          <span class="input-icon">📱</span>
+          <input type="tel" class="input-field" style="padding-left:44px" placeholder="Parent's registered mobile" id="parentPhone" />
+        </div>
+      </div>
+
+      <div class="approval-flow">
+        <div class="flow-step done"><span class="step-dot">✓</span><span>KYC Verified</span></div>
+        <div class="flow-line"></div>
+        <div class="flow-step"><span class="step-dot">2</span><span>Parent Approval</span></div>
+        <div class="flow-line"></div>
+        <div class="flow-step"><span class="step-dot">3</span><span>Loan Disbursed</span></div>
+      </div>
+
+      <button class="btn btn-primary" style="margin-top:16px;" onclick="applyLoan('Personal')">
+        🏦 Apply & Request Parent Approval
+      </button>
+    </div>
+  </div>
+
+  <!-- ── EDUCATION LOAN ── -->
+  <div id="ltab-education" style="display:none">
+    <div class="edu-banner">
+      <div class="edu-icon">🎓</div>
+      <div>
+        <p class="edu-title">Education Loan for Teens</p>
+        <p class="edu-sub">Special rates for school & college fees. Interest subsidy available!</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title" style="margin-bottom:16px;">Apply for Education Loan</div>
+
+      <div class="input-group">
+        <label>Educational Purpose</label>
+        <select class="input-field" id="eduPurpose">
+          <option>School Tuition Fees</option>
+          <option>Coaching / Tuition Classes</option>
+          <option>College Admission Fees</option>
+          <option>Books & Study Material</option>
+          <option>Online Courses / Certifications</option>
+          <option>Laptop for Studies</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label>Institution Name</label>
+        <input type="text" class="input-field" placeholder="e.g. Delhi Public School, FIITJEE" />
+      </div>
+      <div class="input-group">
+        <label>Loan Amount (₹)</label>
+        <input type="range" class="amt-slider" id="eduSlider" min="1000" max="25000" step="1000" value="10000" oninput="updateEdu()" />
+        <div class="slider-display">
+          <span>₹1,000</span>
+          <strong id="eduAmt">₹10,000</strong>
+          <span>₹25,000</span>
+        </div>
+      </div>
+      <div class="edu-benefits">
+        <div class="edu-benefit"><span>✅</span><span>Interest rate: <strong>6% p.a.</strong> (subsidised)</span></div>
+        <div class="edu-benefit"><span>✅</span><span>Moratorium: No EMI during study period</span></div>
+        <div class="edu-benefit"><span>✅</span><span>Flexible repayment after course ends</span></div>
+        <div class="edu-benefit"><span>✅</span><span>Parent co-signature mandatory</span></div>
+      </div>
+
+      <div class="input-group">
+        <label>Parent/Guardian Phone for Approval</label>
+        <div class="input-icon-wrap">
+          <span class="input-icon">📱</span>
+          <input type="tel" class="input-field" style="padding-left:44px" placeholder="Parent's registered mobile" />
+        </div>
+      </div>
+
+      <div class="autopay-toggle" style="background:var(--bg3);border-radius:12px;padding:14px;margin-bottom:14px;">
+        <div>
+          <p class="autopay-title">Auto-Pay EMI after moratorium</p>
+          <p class="autopay-sub">EMI begins after your course duration</p>
+        </div>
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="slider-thumb"></span>
+        </label>
+      </div>
+
+      <button class="btn btn-primary" onclick="applyLoan('Education')">
+        🎓 Apply & Send to Parent
+      </button>
+    </div>
+  </div>
+
+  <!-- ── ACTIVE LOANS ── -->
+  <div id="ltab-active" style="display:none">
+    <div class="active-loan-card">
+      <div class="al-header">
+        <div>
+          <p class="al-type">Personal Loan</p>
+          <p class="al-purpose">Gadget Purchase</p>
+        </div>
+        <span class="tag green">Active</span>
+      </div>
+      <div class="al-progress-label"><span>Repaid ₹4,000 of ₹8,000</span><span>50%</span></div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:50%"></div></div>
+      <div class="al-stats">
+        <div class="al-stat"><span>EMI</span><strong>₹1,400/mo</strong></div>
+        <div class="al-stat"><span>Due</span><strong>25th Apr</strong></div>
+        <div class="al-stat"><span>Pending</span><strong>4 months</strong></div>
+      </div>
+      <div class="autopay-badge"><span>⚡</span> Auto-Pay ON · Parent Notified</div>
+    </div>
+
+    <div class="no-more-loans">
+      <div class="nmll-icon">🎉</div>
+      <p>No overdue loans! Keep it up!</p>
+    </div>
+  </div>
+
+</main>
+
+<!-- TAB BAR -->
+<nav class="tabbar">
+  <div class="tab-item" onclick="window.location.href='home.html'"><span class="tab-icon">🏠</span><span class="tab-label">Home</span></div>
+  <div class="tab-item" onclick="window.location.href='payment.html'"><span class="tab-icon">💸</span><span class="tab-label">Pay</span></div>
+  <div class="tab-item" onclick="window.location.href='investment.html'"><span class="tab-icon">📈</span><span class="tab-label">Invest</span></div>
+  <div class="tab-item active"><span class="tab-icon">🏦</span><span class="tab-label">Loan</span></div>
+  <div class="tab-item" onclick="window.location.href='wallet.html'"><span class="tab-icon">👛</span><span class="tab-label">Wallet</span></div>
+</nav>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="loanModal">
+  <div class="modal-sheet" style="text-align:center;">
+    <div class="modal-handle"></div>
+    <div style="font-size:3rem;margin-bottom:12px;">📲</div>
+    <h2 class="modal-title">Approval Request Sent!</h2>
+    <p style="color:var(--text2);font-size:0.85rem;margin-bottom:16px;line-height:1.6;">
+      A notification has been sent to your parent's number for co-signing.<br>
+      Loan will be disbursed within <strong>24 hours</strong> of approval.
+    </p>
+    <div style="background:var(--bg3);border-radius:12px;padding:14px;margin-bottom:16px;">
+      <p style="font-size:0.8rem;color:var(--text3);font-weight:600;">Ref ID: FT-LOAN-2024041200X</p>
+    </div>
+    <button class="btn btn-primary" onclick="closeLoanModal()">Done</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="loan.js"></script>
+</body>
+</html>

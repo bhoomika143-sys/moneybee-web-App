@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<title>MoneyBee&#128029; – Insurance</title>
+<link rel="stylesheet" href="global.css"/>
+<link rel="stylesheet" href="insurance.css"/>
+<link rel="icon" type="image/png" href="moneybee.png">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <span class="logo">MoneyBee&#128029;</span>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="showSearch()">🔍</button>
+    <button class="nav-btn profile-btn" onclick="goPage('profile')">
+      <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=teen" alt="profile"/>
+    </button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="page active" id="page-insurance">
+  <div class="main-content">
+
+    <!-- Parent approval banner -->
+    <div class="parent-banner fade-up">
+      <span class="icon">🔐</span>
+      <div class="text">All insurance plans require parent/guardian approval before activation.</div>
+    </div>
+
+    <!-- Header -->
+    <div class="ins-header fade-up delay-1">
+      <div class="ins-title">My Insurance</div>
+      <div class="ins-sub">Protect what matters most</div>
+    </div>
+
+    <!-- Active plan pill -->
+    <div class="active-plan-wrap fade-up delay-1">
+      <div class="active-plan-card">
+        <div class="apc-left">
+          <div class="apc-icon">🛡️</div>
+          <div>
+            <div class="apc-name">Health Shield Basic</div>
+            <div class="apc-status"><span class="glow-dot"></span> Active</div>
+          </div>
+        </div>
+        <div class="apc-right">
+          <div class="apc-premium">₹299<span>/mo</span></div>
+          <div class="tag green">Approved</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category tabs -->
+    <div class="ins-tabs fade-up delay-2" id="insTabs">
+      <button class="ins-tab active" data-tab="health">❤️ Health</button>
+      <button class="ins-tab" data-tab="life">💙 Life</button>
+      <button class="ins-tab" data-tab="gadget">📱 Gadget</button>
+    </div>
+
+    <!-- === HEALTH PLANS === -->
+    <div class="ins-plans" id="tab-health">
+      <div class="ins-plan-card fade-up delay-2" data-plan="Health Shield Basic" data-premium="299" data-type="health">
+        <div class="ipc-top">
+          <div class="ipc-badge">⭐ Most Popular</div>
+          <div class="tag green">Active</div>
+        </div>
+        <div class="ipc-name">Health Shield Basic</div>
+        <div class="ipc-premium">₹299 <span>/ month</span></div>
+        <div class="ipc-benefits">
+          <div class="benefit-row"><span class="ben-check">✔</span> Hospitalization up to ₹1 Lakh</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> OPD Cover ₹5,000/year</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> COVID-19 Cover</div>
+          <div class="benefit-row"><span class="ben-x">✗</span> Dental Cover</div>
+          <div class="benefit-row"><span class="ben-x">✗</span> Vision Cover</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="viewPlan(this)">View Details</button>
+      </div>
+
+      <div class="ins-plan-card fade-up delay-3" data-plan="Health Shield Pro" data-premium="599" data-type="health">
+        <div class="ipc-top">
+          <div class="ipc-badge recommended">🔥 Best Value</div>
+          <div class="tag">For teens</div>
+        </div>
+        <div class="ipc-name">Health Shield Pro</div>
+        <div class="ipc-premium">₹599 <span>/ month</span></div>
+        <div class="ipc-benefits">
+          <div class="benefit-row"><span class="ben-check">✔</span> Hospitalization up to ₹3 Lakh</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> OPD Cover ₹10,000/year</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> COVID-19 Cover</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Dental Cover</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Mental Health Sessions (5/yr)</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="applyPlan(this)">Apply Plan</button>
+      </div>
+
+      <div class="ins-plan-card fade-up delay-3" data-plan="Family Floater" data-premium="999" data-type="health">
+        <div class="ipc-top">
+          <div class="ipc-badge family">👨‍👩‍👧 Family</div>
+          <div class="tag yellow">Premium</div>
+        </div>
+        <div class="ipc-name">Family Floater Plan</div>
+        <div class="ipc-premium">₹999 <span>/ month</span></div>
+        <div class="ipc-benefits">
+          <div class="benefit-row"><span class="ben-check">✔</span> Cover for entire family</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Hospitalization up to ₹5 Lakh</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> All Pro features included</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Maternity Benefits</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Free Annual Check-up</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="applyPlan(this)">Apply Plan</button>
+      </div>
+    </div>
+
+    <!-- === LIFE PLANS === -->
+    <div class="ins-plans" id="tab-life" style="display:none">
+      <div class="ins-notice">
+        <div class="notice-icon">ℹ️</div>
+        <div class="notice-text">Life insurance for under-18 is a child rider plan linked to parent's policy. Parent approval mandatory.</div>
+      </div>
+
+      <div class="ins-plan-card fade-up" data-plan="Child Term Rider" data-premium="149" data-type="life">
+        <div class="ipc-top">
+          <div class="ipc-badge">🌱 Starter</div>
+          <div class="tag">Under 18</div>
+        </div>
+        <div class="ipc-name">Child Term Rider</div>
+        <div class="ipc-premium">₹149 <span>/ month</span></div>
+        <div class="ipc-benefits">
+          <div class="benefit-row"><span class="ben-check">✔</span> Cover up to ₹5 Lakh</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Linked to parent policy</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Accidental Death Benefit</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Auto-converts at age 18</div>
+          <div class="benefit-row"><span class="ben-x">✗</span> Standalone policy</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="applyPlan(this)">Apply Plan</button>
+      </div>
+
+      <div class="ins-plan-card fade-up delay-1" data-plan="Future Secure Plus" data-premium="349" data-type="life">
+        <div class="ipc-top">
+          <div class="ipc-badge recommended">🔒 Best Protection</div>
+          <div class="tag yellow">Premium</div>
+        </div>
+        <div class="ipc-name">Future Secure Plus</div>
+        <div class="ipc-premium">₹349 <span>/ month</span></div>
+        <div class="ipc-benefits">
+          <div class="benefit-row"><span class="ben-check">✔</span> Cover up to ₹15 Lakh</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Education Continuity Benefit</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Critical Illness Rider</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Disability Cover</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Savings Component (20%)</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="applyPlan(this)">Apply Plan</button>
+      </div>
+    </div>
+
+    <!-- === GADGET PLANS === -->
+    <div class="ins-plans" id="tab-gadget" style="display:none">
+      <div class="ins-plan-card fade-up" data-plan="PhoneGuard Basic" data-premium="79" data-type="gadget">
+        <div class="ipc-top">
+          <div class="ipc-badge">📱 Phone Only</div>
+          <div class="tag green">Affordable</div>
+        </div>
+        <div class="ipc-name">PhoneGuard Basic</div>
+        <div class="ipc-premium">₹79 <span>/ month</span></div>
+        <div class="ipc-benefits">
+          <div class="benefit-row"><span class="ben-check">✔</span> Screen damage cover</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Theft protection up to ₹15K</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Water damage cover</div>
+          <div class="benefit-row"><span class="ben-x">✗</span> Laptop/Tablet cover</div>
+          <div class="benefit-row"><span class="ben-x">✗</span> Accessories cover</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="applyPlan(this)">Apply Plan</button>
+      </div>
+
+      <div class="ins-plan-card fade-up delay-1" data-plan="TechAll Shield" data-premium="199" data-type="gadget">
+        <div class="ipc-top">
+          <div class="ipc-badge recommended">💻 All Devices</div>
+          <div class="tag">Popular</div>
+        </div>
+        <div class="ipc-name">TechAll Shield</div>
+        <div class="ipc-premium">₹199 <span>/ month</span></div>
+        <div class="ipc-benefits">
+          <div class="benefit-row"><span class="ben-check">✔</span> Phone + Laptop + Tablet</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Theft protection up to ₹50K</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Accessories cover ₹5K</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> Data recovery service</div>
+          <div class="benefit-row"><span class="ben-check">✔</span> 24/7 tech support</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="applyPlan(this)">Apply Plan</button>
+      </div>
+    </div>
+
+    <!-- Claims section -->
+    <div class="section-header fade-up" style="margin-top:8px">
+      <span class="section-title">Recent Claims</span>
+      <span class="section-link">All Claims</span>
+    </div>
+    <div class="card fade-up" style="padding:0;overflow:hidden">
+      <div class="claim-item">
+        <div class="claim-icon" style="background:rgba(52,211,153,0.15)">✅</div>
+        <div class="claim-info">
+          <div class="claim-name">OPD Reimbursement</div>
+          <div class="claim-date">15 Mar 2025 · Health</div>
+        </div>
+        <div>
+          <div class="txn-amt green">+₹1,200</div>
+          <div class="tag green" style="margin-top:4px">Settled</div>
+        </div>
+      </div>
+      <div class="claim-item" style="border-bottom:none">
+        <div class="claim-icon" style="background:rgba(251,191,36,0.15)">🔄</div>
+        <div class="claim-info">
+          <div class="claim-name">Phone Screen Repair</div>
+          <div class="claim-date">02 Apr 2025 · Gadget</div>
+        </div>
+        <div>
+          <div class="txn-amt" style="color:var(--yellow)">₹3,500</div>
+          <div class="tag yellow" style="margin-top:4px">In Review</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tabbar">
+  <div class="tab-item" onclick="goPage('home')"><div class="tab-icon">🏠</div><div class="tab-label">Home</div></div>
+  <div class="tab-item" onclick="goPage('payment')"><div class="tab-icon">💸</div><div class="tab-label">Pay</div></div>
+  <div class="tab-item" onclick="goPage('investment')"><div class="tab-icon">📈</div><div class="tab-label">Invest</div></div>
+  <div class="tab-item" onclick="goPage('loan')"><div class="tab-icon">🏦</div><div class="tab-label">Loan</div></div>
+  <div class="tab-item active"><div class="tab-icon">🛡️</div><div class="tab-label">Insure</div></div>
+</div>
+
+<!-- APPLY MODAL -->
+<div class="modal-overlay" id="applyModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Apply for <span id="modalPlanName"></span></div>
+    <div class="ins-modal-premium">Premium: <strong id="modalPremiumAmt"></strong>/month</div>
+
+    <div class="parent-banner" style="margin-top:12px">
+      <span class="icon">👨‍👩‍👧</span>
+      <div class="text">A notification will be sent to your parent/guardian for approval. Insurance will activate only after their approval.</div>
+    </div>
+
+    <div class="input-group" style="margin-top:12px">
+      <label>Your Name</label>
+      <input class="input-field" type="text" placeholder="Full name as per Aadhaar"/>
+    </div>
+    <div class="input-group">
+      <label>Date of Birth</label>
+      <input class="input-field" type="date"/>
+    </div>
+    <div class="input-group">
+      <label>Parent/Guardian Name</label>
+      <input class="input-field" type="text" placeholder="Parent's full name"/>
+    </div>
+    <div class="input-group">
+      <label>Parent's Mobile</label>
+      <input class="input-field" type="tel" placeholder="+91 XXXXX XXXXX"/>
+    </div>
+    <div class="auto-pay-row">
+      <div>
+        <div class="ap-label">Auto-pay Premium</div>
+        <div class="ap-sub">Deducted monthly from wallet</div>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" checked id="autoPayIns"/>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <button class="btn btn-primary" style="margin-top:16px" onclick="submitInsurance()">
+      🔐 Send for Parent Approval
+    </button>
+    <button class="btn btn-secondary" style="margin-top:8px" onclick="closeModal('applyModal')">Cancel</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="insurance.js"></script>
+</body>
+</html>

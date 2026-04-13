@@ -1,0 +1,54 @@
+.back-btn { background:none; border:none; color:var(--accent2); font-family:var(--font); font-weight:700; font-size:0.85rem; cursor:pointer; }
+.nav-title { font-size:1rem; font-weight:800; }
+
+.contacts-row { display:flex; gap:12px; overflow-x:auto; padding-bottom:4px; margin-bottom:20px; }
+.contact-chip { display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer; min-width:60px; }
+.chip-avatar { width:52px; height:52px; border-radius:18px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; color:#fff; transition:transform 0.2s; border:2px solid transparent; }
+.contact-chip.active .chip-avatar { border-color:var(--accent); box-shadow:0 0 16px rgba(124,107,255,0.4); }
+.contact-chip span { font-size:0.7rem; font-weight:700; color:var(--text2); }
+.contact-chip:active .chip-avatar { transform:scale(0.9); }
+
+.pay-methods { display:flex; gap:6px; background:var(--bg3); border-radius:10px; padding:4px; }
+.method-btn { flex:1; padding:9px; border:none; background:none; border-radius:7px; font-family:var(--font); font-weight:700; font-size:0.8rem; color:var(--text2); cursor:pointer; transition:all 0.2s; }
+.method-btn.active { background:var(--accent); color:#fff; }
+
+.receiver-field { display:flex; gap:8px; }
+.receiver-field .input-field { flex:1; }
+.verify-btn { background:var(--accent); color:#fff; border:none; border-radius:var(--radius-sm); padding:0 16px; font-family:var(--font); font-weight:700; font-size:0.82rem; cursor:pointer; white-space:nowrap; }
+
+.verified-card { display:flex; align-items:center; gap:12px; background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.3); border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+.verified-avatar { width:40px; height:40px; border-radius:14px; background:linear-gradient(135deg,var(--accent),var(--accent3)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff; }
+.verified-info { flex:1; }
+.verified-name { font-size:0.9rem; font-weight:800; }
+.verified-upi { font-size:0.72rem; color:var(--text2); font-weight:600; }
+.verified-tick { color:var(--green); font-size:1.2rem; font-weight:900; }
+
+.amount-display { display:flex; align-items:center; justify-content:center; gap:8px; padding:20px 0 8px; }
+.amount-prefix { font-size:2rem; font-weight:900; color:var(--text2); }
+.amount-input { background:none; border:none; outline:none; font-size:3rem; font-weight:900; color:var(--text); font-family:var(--mono); width:200px; text-align:center; }
+.amount-input::placeholder { color:var(--text3); }
+
+.teen-limit-note { text-align:center; font-size:0.75rem; color:var(--text3); font-weight:600; margin-bottom:14px; }
+.teen-limit-note.warn { color:var(--orange); }
+
+.quick-amounts { display:flex; gap:8px; margin-bottom:16px; justify-content:center; }
+.qa-chip { background:var(--card2); border:1.5px solid var(--border); border-radius:20px; padding:7px 14px; font-family:var(--font); font-weight:700; font-size:0.82rem; color:var(--text2); cursor:pointer; transition:all 0.2s; }
+.qa-chip:active { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+.upi-apps { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:20px; }
+.upi-app { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px 8px; display:flex; flex-direction:column; align-items:center; gap:6px; cursor:pointer; transition:transform 0.2s; }
+.upi-app:active { transform:scale(0.95); }
+.upi-icon { font-size:1.6rem; }
+.upi-app span { font-size:0.7rem; font-weight:700; color:var(--text2); }
+
+/* QR */
+.qr-display { display:flex; flex-direction:column; align-items:center; gap:8px; padding:20px; background:var(--bg3); border-radius:16px; margin-bottom:20px; }
+#qrCanvas { width:160px; height:160px; background:white; border-radius:8px; }
+.qr-upi { font-size:0.85rem; color:var(--accent2); font-weight:700; }
+.qr-name { font-size:0.8rem; color:var(--text2); font-weight:600; }
+
+/* Success */
+.success-anim { font-size:4rem; margin-bottom:12px; animation:fadeUp 0.5s ease; }
+.success-title { font-size:1.4rem; font-weight:900; margin-bottom:6px; }
+.success-sub { color:var(--text2); font-size:0.9rem; font-weight:600; margin-bottom:8px; }
+.success-ref { background:var(--bg3); border-radius:8px; padding:8px 16px; font-family:var(--mono); font-size:0.75rem; color:var(--text3); display:inline-block; }
